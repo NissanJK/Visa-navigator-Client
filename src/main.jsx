@@ -9,6 +9,7 @@ import {
 import AddVisa from './components/AddVisa.jsx';
 import UpdateVisa from './components/UpdateVisa.jsx';
 import AllVisas from './components/AllVisas.jsx';
+import VisaDetails from './components/VisaDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "allVisa",
     element: <AllVisas/>,
+  },
+  {
+    path: "visa-details/:id",
+    element: <VisaDetails/>,
   },
   {
     path: "updateVisa",

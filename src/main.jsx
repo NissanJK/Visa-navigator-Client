@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import AddVisa from './components/AddVisa.jsx';
 import UpdateVisa from './components/UpdateVisa.jsx';
+import AllVisas from './components/AllVisas.jsx';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "addVisa",
     element: <AddVisa/>,
+  },
+  {
+    path: "allVisa",
+    element: <AllVisas/>,
   },
   {
     path: "updateVisa",

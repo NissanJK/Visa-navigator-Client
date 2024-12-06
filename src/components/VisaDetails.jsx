@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import ApplyModal from "./ApplyModal";
 
 const VisaDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [visa, setVisa] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const fetchVisa = async () => {
@@ -53,11 +55,22 @@ const VisaDetails = () => {
                 </div>
             </div>
             <div className="text-center mt-6">
-                <button className="btn btn-primary" onClick={() => toast.info("Apply Modal Coming Soon")}>
-                    Apply for Visa
-                </button>
+                <div className="text-center mt-6">
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => setIsModalOpen(true)}
+                    >
+                        Apply for Visa
+                    </button>
+                </div>
+                {isModalOpen && (
+                    <ApplyModal
+                        visa={visa}
+                        onClose={() => setIsModalOpen(false)}
+                    />
+                )}
             </div>
-        </div>
+        </div >
     );
 };
 

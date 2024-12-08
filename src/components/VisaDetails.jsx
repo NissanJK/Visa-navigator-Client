@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import ApplyModal from "./ApplyModal";
+import { Helmet } from "react-helmet";
 
 const VisaDetails = () => {
     const { id } = useParams();

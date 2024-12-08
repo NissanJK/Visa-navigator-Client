@@ -36,8 +36,7 @@ const AllVisas = () => {
                     <option value="Student Visa">Student Visa</option>
                     <option value="Official Visa">Official Visa</option>
                 </select>
-                <input type="text" placeholder="Search by country" className="input input-bordered" value={search} onChange={(e) => setSearch(e.target.value)}
-                />
+                <input type="text" placeholder="Search by country" className="input input-bordered" value={search} onChange={(e) => setSearch(e.target.value)}/>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {filteredVisas.map((visa) => (

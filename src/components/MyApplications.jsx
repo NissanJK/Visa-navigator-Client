@@ -3,6 +3,7 @@ import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const MyApplications = () => {
   const [applications, setApplications] = useState([]);
@@ -78,6 +79,9 @@ const MyApplications = () => {
 
   return (
     <div className="w-11/12 mx-auto p-6 my-10">
+      <Helmet>
+        <title>Visa Navigator | My Applications</title>
+      </Helmet>
       <ToastContainer></ToastContainer>
       <h1 className="text-3xl font-black mb-10 text-center underline underline-offset-2">
         My Visa Applications

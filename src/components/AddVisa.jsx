@@ -1,5 +1,6 @@
 import { getAuth } from "firebase/auth";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 
 const AddVisa = () => {
@@ -53,6 +54,9 @@ const AddVisa = () => {
 
     return (
         <div className="max-w-3xl mx-auto p-6 bg-gray-300 shadow-md rounded-lg my-10">
+            <Helmet>
+                <title>Visa Navigator | Add Visa</title>
+            </Helmet>
             <h2 className="text-3xl font-black text-center mb-10 text-gray-700 underline underline-offset-2">Add Visa</h2>
             <form onSubmit={handleSubmit}>
                 <input type="hidden" name="email" value={userEmail} />

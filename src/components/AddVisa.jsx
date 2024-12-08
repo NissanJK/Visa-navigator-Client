@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import { getAuth } from "firebase/auth";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 const AddVisa = () => {
     const [visaType, setVisaType] = useState("");
     const [documents, setDocuments] = useState([]);
+    const [userEmail, setUserEmail] = useState("");
 
+    useEffect(() => {
+      const auth = getAuth();
+      const user = auth.currentUser;
+  
+      if (user && user.email) {
+        setUserEmail(user.email);
+      }
+    }, []);
     const handleDocumentChange = (e) => {
         const { value, checked } = e.target;
         if (checked) {
@@ -18,9 +28,10 @@ const AddVisa = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
+        data.addedBy = userEmail;
         data.requiredDocuments = documents;
-        console.log("Form Data:", data);
-        fetch('http://localhost:5000/visa', {
+        //console.log("Form Data:", data);
+        fetch('https://visa-navigator-server-five.vercel.app/visa', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -46,6 +57,7 @@ const AddVisa = () => {
         <div className="max-w-3xl mx-auto p-6 bg-gray-300 shadow-md rounded-lg my-10">
             <h2 className="text-3xl font-black text-center mb-10 text-gray-700 underline underline-offset-2">Add Visa</h2>
             <form onSubmit={handleSubmit}>
+                <input type="hidden" name="email" value={userEmail} />
                 <div className="mb-4">
                     <label className="block text-gray-700 font-medium mb-2">Country Image</label>
                     <input type="text" name='photo' placeholder="Enter country image" className="input input-bordered w-full" required />

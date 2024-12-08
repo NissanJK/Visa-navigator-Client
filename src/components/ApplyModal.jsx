@@ -21,7 +21,7 @@ const ApplyModal = ({ visa, onClose }) => {
     const applicationData = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch("http://localhost:5000/application", {
+      const response = await fetch("https://visa-navigator-server-five.vercel.app/application", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

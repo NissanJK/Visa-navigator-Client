@@ -14,7 +14,7 @@ const VisaDetails = () => {
     useEffect(() => {
         const fetchVisa = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/visa/${id}`);
+                const response = await axios.get(`https://visa-navigator-server-five.vercel.app/visa/${id}`);
                 setVisa(response.data);
                 setLoading(false);
             } catch (error) {

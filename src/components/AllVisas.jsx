@@ -10,7 +10,7 @@ const AllVisas = () => {
     useEffect(() => {
         const fetchVisa = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/visa");
+                const response = await axios.get("https://visa-navigator-server-five.vercel.app/visa");
                 setVisa(response.data);
             } catch (error) {
                 console.error("Error fetching visas:", error);

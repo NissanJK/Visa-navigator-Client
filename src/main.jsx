@@ -6,7 +6,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import AddVisa from './components/AddVisa.jsx';
-import UpdateVisa from './components/UpdateVisa.jsx';
 import AllVisas from './components/AllVisas.jsx';
 import VisaDetails from './components/VisaDetails.jsx';
 import MyApplications from './components/MyApplications.jsx';
@@ -19,6 +18,7 @@ import ForgetPassword from './pages/ForgetPassword.jsx';
 import AuthProvider from './context/AuthContext.jsx';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from './components/routes/PrivateRoute.jsx';
+import MyAddedVisas from './components/MyAddedVisas.jsx';
 
 const router = createBrowserRouter([
   {
@@ -43,8 +43,8 @@ const router = createBrowserRouter([
         element: <PrivateRoute><VisaDetails /></PrivateRoute>,
       },
       {
-        path: "/updateVisa",
-        element: <UpdateVisa />,
+        path: "/my-visas",
+        element: <PrivateRoute><MyAddedVisas /></PrivateRoute>,
       },
       {
         path: "/my-applications",

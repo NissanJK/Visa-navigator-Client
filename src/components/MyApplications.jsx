@@ -26,7 +26,7 @@ const MyApplications = () => {
 
     const fetchApplications = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/application", {
+        const response = await axios.get("https://visa-navigator-server-five.vercel.app/application", {
           params: { email: userEmail },
         });
         setApplications(response.data);
@@ -55,7 +55,7 @@ const MyApplications = () => {
     if (!confirmed) return;
 
     try {
-      const response = await axios.delete(`http://localhost:5000/application/${applicationId}`);
+      const response = await axios.delete(`https://visa-navigator-server-five.vercel.app/application/${applicationId}`);
       if (response.status === 200) {
         Swal.fire({
           title: 'Success!',

@@ -8,7 +8,7 @@ const LatestVisas = () => {
   useEffect(() => {
     const fetchLatestVisas = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/visa?limit=6");
+        const response = await axios.get("https://visa-navigator-server-five.vercel.app/visa?limit=5");
         setVisas(response.data);
       } catch (error) {
         console.error("Error fetching latest visas:", error);

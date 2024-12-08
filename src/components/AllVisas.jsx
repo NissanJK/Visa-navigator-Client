@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const AllVisas = () => {
     const [visa, setVisa] = useState([]);
@@ -27,6 +28,9 @@ const AllVisas = () => {
 
     return (
         <div className="p-6">
+            <Helmet>
+                <title>Visa Navigator | All Visa</title>
+            </Helmet>
             <h1 className="text-3xl font-black mb-10 text-center underline underline-offset-2">All Visas</h1>
 
             <div className="flex gap-4 mb-10 justify-center">

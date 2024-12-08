@@ -30,7 +30,6 @@ const AddVisa = () => {
         const data = Object.fromEntries(formData.entries());
         data.addedBy = userEmail;
         data.requiredDocuments = documents;
-        //console.log("Form Data:", data);
         fetch('https://visa-navigator-server-five.vercel.app/visa', {
             method: 'POST',
             headers: {
@@ -41,7 +40,6 @@ const AddVisa = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
-                    console.log('successfully added');
                     Swal.fire({
                         title: 'Success!',
                         text: 'Visa added successfully',

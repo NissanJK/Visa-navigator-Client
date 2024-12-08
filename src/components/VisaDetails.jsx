@@ -32,6 +32,9 @@ const VisaDetails = () => {
 
     return (
         <div className="max-w-4xl mx-auto p-6 bg-gray-300 text-gray-700 shadow-md rounded-lg my-10">
+            <Helmet>
+                <title>Visa Navigator | Visa Details</title>
+            </Helmet>
             <h2 className="text-3xl font-black mb-10 text-center underline underline-offset-2">Visa Details</h2>
             <div className="lg:flex justify-evenly">
                 <div className="flex flex-col">

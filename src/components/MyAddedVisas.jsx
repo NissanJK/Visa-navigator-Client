@@ -73,7 +73,7 @@ const MyAddedVisas = () => {
             {visas.length === 0 ? (
                 <p className="text-center text-gray-500">You have not added any visas yet.</p>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {visas.map((visa) => (
                         <div key={visa._id} className="card bg-gray-300 text-gray-700 shadow-md">
                             <figure className="p-3">

@@ -31,7 +31,6 @@ const VisaDetails = () => {
 
     const handleApplyClick = () => {
         if (!user) {
-            toast.info("Please log in to apply for a visa");
             navigate("/login");
         } else {
             setIsModalOpen(true);

@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 
 const Home = () => {
     return (
-        <div>
+        <div className="pb-10">
             <Helmet>
                 <title>Visa Navigator | Home</title>
             </Helmet>

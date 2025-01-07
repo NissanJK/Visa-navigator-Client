@@ -9,7 +9,7 @@ const ExtraSectionTwo = () => {
   ];
 
   return (
-    <div className="w-11/12 mx-auto p-6 text-center bg-gray-300 rounded-lg m-10">
+    <div className="w-11/12 mx-auto p-6 text-center bg-gray-300 rounded-lg mt-10">
       <h2 className="text-3xl font-black underline underline-offset-2 text-gray-800 mb-10">
         Customer Testimonials
       </h2>

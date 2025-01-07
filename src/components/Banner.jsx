@@ -2,9 +2,6 @@ import React, { useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import img1 from "../assets/6561.jpg_wh860.jpg";
-import img2 from "../assets/flat-travel-background-tourism-visa-260nw-279542630.jpg";
-import img3 from "../assets/visum-navigator-1920x550-9f1.webp";
 
 const Banner = () => {
   const sliderRef = useRef(null);
@@ -18,7 +15,6 @@ const Banner = () => {
     autoplay: true,
     autoplaySpeed: 2000,
     beforeChange: () => {
-      // Remove focus from any element in the slider to prevent conflicts
       const activeElement = document.activeElement;
       if (sliderRef.current && sliderRef.current.contains(activeElement)) {
         activeElement.blur();
@@ -29,15 +25,18 @@ const Banner = () => {
   const slides = [
     {
       title: "Discover the World with Easy Visas",
-      backgroundImage: img1,
+      backgroundImage:
+        "https://img.freepik.com/free-photo/top-view-tourist-objects-frame-with-copy-space_23-2148786099.jpg",
     },
     {
       title: "Fast Visa Processing for Over 100 Countries",
-      backgroundImage: img2,
+      backgroundImage:
+        "https://img.freepik.com/free-photo/american-visa-document_1101-820.jpg",
     },
     {
       title: "Your Travel Dreams Made Simple",
-      backgroundImage: img3,
+      backgroundImage:
+        "https://img.freepik.com/free-vector/visa-stamping-illustration_1284-52334.jpg?t=st=1736250164~exp=1736253764~hmac=53446c18a368455ca23f3a72c4476ad4305e9ffd0534449e39fca91257d3c632&w=740",
     },
   ];
 
@@ -48,8 +47,9 @@ const Banner = () => {
           <div
             key={index}
             className="h-[60svh] flex items-center justify-center text-white text-center bg-cover bg-center"
-            style={{ backgroundImage: `url(${slide.backgroundImage})` }}
-            tabIndex={index === 0 ? 0 : -1} // Only the first slide is focusable initially
+            style={{
+              backgroundImage: `url(${slide.backgroundImage})`, // Set the background image
+            }}
           >
             <h2 className="text-4xl font-bold bg-black bg-opacity-50 px-4 py-2 rounded-md">
               {slide.title}

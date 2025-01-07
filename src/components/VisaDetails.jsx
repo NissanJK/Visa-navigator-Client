@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import ApplyModal from "./ApplyModal";
 import { Helmet } from "react-helmet";
+import { AuthContext } from "../context/AuthContext";
 
 const VisaDetails = () => {
     const { id } = useParams();
@@ -11,6 +12,7 @@ const VisaDetails = () => {
     const [visa, setVisa] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         const fetchVisa = async () => {
@@ -26,6 +28,15 @@ const VisaDetails = () => {
         };
         fetchVisa();
     }, [id, navigate]);
+
+    const handleApplyClick = () => {
+        if (!user) {
+            toast.info("Please log in to apply for a visa");
+            navigate("/login");
+        } else {
+            setIsModalOpen(true);
+        }
+    };
 
     if (loading) {
         return <div className="loading loading-infinity loading-lg mx-auto my-auto"></div>;
@@ -59,14 +70,12 @@ const VisaDetails = () => {
                 </div>
             </div>
             <div className="text-center mt-6">
-                <div className="text-center mt-6">
-                    <button
-                        className="btn btn-primary"
-                        onClick={() => setIsModalOpen(true)}
-                    >
-                        Apply for Visa
-                    </button>
-                </div>
+                <button
+                    className="btn btn-primary"
+                    onClick={handleApplyClick}
+                >
+                    Apply for Visa
+                </button>
                 {isModalOpen && (
                     <ApplyModal
                         visa={visa}
@@ -74,7 +83,7 @@ const VisaDetails = () => {
                     />
                 )}
             </div>
-        </div >
+        </div>
     );
 };
 

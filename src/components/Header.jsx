@@ -71,7 +71,7 @@ const Header = () => {
     </>
 
     return (
-        <header className="bg-blue-600 text-white p-4">
+        <header className="bg-blue-600 text-white p-4 sticky top-0 z-50">
             <nav className="container mx-auto flex justify-between items-center">
                 <div className="text-xl font-bold flex flex-col flex-grow lg:flex-grow-0">
                     {user && (

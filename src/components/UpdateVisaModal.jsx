@@ -3,7 +3,14 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const UpdateVisaModal = ({ visa, onClose, onUpdated }) => {
-  const [formData, setFormData] = useState({ ...visa });
+  const [formData, setFormData] = useState({
+    countryName: visa.countryName || "",
+    visaType: visa.visaType || "",
+    processingTime: visa.processingTime || "",
+    fee: visa.fee || "",
+    validity: visa.validity || "",
+    applicationMethod: visa.applicationMethod || "",
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -12,12 +19,19 @@ const UpdateVisaModal = ({ visa, onClose, onUpdated }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await axios.put(`https://visa-navigator-server-five.vercel.app/visa/${visa._id}`, formData);
-      if (response.status === 200) {
+      const response = await axios.put(
+        `https://visa-navigator-server-five.vercel.app/visa/${visa._id}`,
+        formData
+      );
+
+      if (response.status === 200 && response.data.success) {
         Swal.fire("Success", "Visa updated successfully!", "success");
-        onUpdated(response.data);
-        onClose();
+        onUpdated({ ...visa, ...formData }); // Update the state in the parent component
+        onClose(); // Close the modal
+      } else {
+        throw new Error("Failed to update visa.");
       }
     } catch (error) {
       console.error("Error updating visa:", error);
@@ -32,26 +46,76 @@ const UpdateVisaModal = ({ visa, onClose, onUpdated }) => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block font-semibold">Country Name</label>
-            <input name="countryName" type="text" value={formData.countryName} onChange={handleInputChange} className="input input-bordered w-full" required/>
+            <input
+              name="countryName"
+              type="text"
+              value={formData.countryName}
+              onChange={handleInputChange}
+              className="input input-bordered w-full"
+              required
+            />
           </div>
           <div className="mb-4">
             <label className="block font-semibold">Visa Type</label>
-            <input name="visaType" type="text" value={formData.visaType} onChange={handleInputChange} className="input input-bordered w-full" required/>
+            <input
+              name="visaType"
+              type="text"
+              value={formData.visaType}
+              onChange={handleInputChange}
+              className="input input-bordered w-full"
+              required
+            />
           </div>
           <div className="mb-4">
             <label className="block font-semibold">Processing Time</label>
-            <input name="processingTime" type="text" value={formData.processingTime} onChange={handleInputChange} className="input input-bordered w-full" required/>
+            <input
+              name="processingTime"
+              type="text"
+              value={formData.processingTime}
+              onChange={handleInputChange}
+              className="input input-bordered w-full"
+              required
+            />
           </div>
           <div className="mb-4">
             <label className="block font-semibold">Fee</label>
-            <input name="fee" type="number" value={formData.fee} onChange={handleInputChange} className="input input-bordered w-full" required/>
+            <input
+              name="fee"
+              type="number"
+              value={formData.fee}
+              onChange={handleInputChange}
+              className="input input-bordered w-full"
+              required
+            />
           </div>
           <div className="mb-4">
             <label className="block font-semibold">Validity</label>
-            <input name="validity" type="text" value={formData.validity} onChange={handleInputChange} className="input input-bordered w-full" required />
+            <input
+              name="validity"
+              type="text"
+              value={formData.validity}
+              onChange={handleInputChange}
+              className="input input-bordered w-full"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block font-semibold">Application Method</label>
+            <input
+              name="applicationMethod"
+              type="text"
+              value={formData.applicationMethod}
+              onChange={handleInputChange}
+              className="input input-bordered w-full"
+              required
+            />
           </div>
           <div className="text-right">
-            <button type="button" className="btn btn-secondary mr-2" onClick={onClose}>
+            <button
+              type="button"
+              className="btn btn-secondary mr-2"
+              onClick={onClose}
+            >
               Cancel
             </button>
             <button type="submit" className="btn btn-primary">

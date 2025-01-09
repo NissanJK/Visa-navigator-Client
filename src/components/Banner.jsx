@@ -1,27 +1,11 @@
-import React, { useRef } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 const Banner = () => {
-  const sliderRef = useRef(null);
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    beforeChange: () => {
-      const activeElement = document.activeElement;
-      if (sliderRef.current && sliderRef.current.contains(activeElement)) {
-        activeElement.blur();
-      }
-    },
-  };
-
   const slides = [
     {
       title: "Discover the World with Easy Visas",
@@ -41,23 +25,27 @@ const Banner = () => {
   ];
 
   return (
-    <div className="w-full h-[60svh]" ref={sliderRef}>
-      <Slider {...settings}>
-        {slides.map((slide, index) => (
+    <Swiper
+      modules={[Navigation, Pagination, Autoplay]}
+      navigation
+      pagination={{ clickable: true }}
+      autoplay={{ delay: 2000 }}
+      spaceBetween={30}
+      slidesPerView={1}
+    >
+      {slides.map((slide, index) => (
+        <SwiperSlide key={index}>
           <div
-            key={index}
-            className="h-[60svh] flex items-center justify-center text-white text-center bg-cover bg-center"
-            style={{
-              backgroundImage: `url(${slide.backgroundImage})`, // Set the background image
-            }}
+            className="h-[60vh] opacity-75 flex items-center justify-center text-white text-center bg-cover bg-center"
+            style={{ backgroundImage: `url(${slide.backgroundImage})` }}
           >
-            <h2 className="text-4xl font-bold bg-black bg-opacity-50 px-4 py-2 rounded-md">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl bg-black bg-opacity-50 font-bold px-8 py-4 rounded-md">
               {slide.title}
             </h2>
           </div>
-        ))}
-      </Slider>
-    </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 };
 
